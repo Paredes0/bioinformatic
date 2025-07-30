@@ -68,7 +68,7 @@ micromamba create -n docking_env
 # Activar el entorno
 micromamba activate docking_env
 
-# Instalar paquetes desde el canal bioconda
+# Instalar paquetes desde el canal conda-forge y pip
 $ micromamba install -c conda-forge numpy swig boost-cpp libboost sphinx sphinx_rtd_theme tqdm rdkit meeko openbabel gemmi autogrid
 $ pip install vina
 ```
