@@ -151,7 +151,7 @@ Distribuido bajo la Licencia MIT. Consulta el archivo `LICENSE` para más inform
 
 * **GitHub**: [Paredes0](https://github.com/Paredes0)
 
-* **LinkedIn**: [Tu Perfil](www.linkedin.com/in/noé-paredes-alfonso-395328267)
+* **LinkedIn**: [Tu Perfil](https://www.linkedin.com/in/no%C3%A9-paredes-alfonso-395328267/)
 
 
 
