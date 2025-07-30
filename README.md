@@ -10,7 +10,7 @@ El código fue desarrollado mediante un enfoque de programación asistida por IA
 
 Antes de explicar qué es exactamente y como funciona, he pensado en como contextualizar este proyecto, y creo que la mejor manera de hacerlo es explicar brevemente quien soy y por qué he creado esto.
 
-Soy un estudiante de biotecnología de último año, actualmente estoy cursando prácticas extracurriculares en un grupo dedicado a la bioinformática estructural y química computacional llamado BIO-HPC, de la universidad UCAM Murcia. En el transcurso de estas prácticas, me he encontrado con dificultades a la hora de utilizar herramientas online gratuitas de tipo SBVS, por ello, con ayuda de la inteligencia artificial (Gemini 2.5 pro) y aplicando mis conocimientos básicos de programación, he creado este notebook en Google Colab.
+Soy un estudiante de biotecnología de último año, actualmente estoy cursando prácticas extracurriculares en un grupo dedicado a la bioinformática estructural y química computacional llamado [BIO-HPC](https://bio-hpc.eu/), de la universidad UCAM Murcia. En el transcurso de estas prácticas, me he encontrado con dificultades a la hora de utilizar herramientas online gratuitas de tipo SBVS, por ello, con ayuda de la inteligencia artificial (Gemini 2.5 pro) y aplicando mis conocimientos básicos de programación, he creado este notebook en Google Colab.
 
 El hecho de que este preparado para conectarse a tu ordenador personal es debido a la baja capacidad de cómputo que tiene la versión gratuita de Google Colab, al final de este README.md se indica que CPU he utilizado yo para estos cálculos.
 
