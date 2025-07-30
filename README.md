@@ -78,6 +78,9 @@ $ pip install vina
 Para conectar la interfaz de Colab con la potencia de tu máquina, necesitas iniciar un servidor de Jupyter.
 
 ```bash
+# Si estas en el entorno docking_env todavía, debes salir de él
+micromamba deactivate docking_env
+
 # Crear el entorno
 micromamba create -n colab_connect
 
@@ -95,11 +98,31 @@ Sigue las instrucciones de la terminal para obtener la URL con el token y conéc
 
 (Simplemente copia y pega el link que aparece en la terminal que contenga "http://localhost:8888/lab?token..." en el espacio disponible para una URL en Google Colab dentro del menu (`Conectar a un entorno de ejecución local`))
 
+### 5. Uso Habitual
+
+Una vez tienes los dos enviroment instalados (docking_env y colab_connect) con todos los paquetes instalados, tan solo tendrás que realizar el paso anterior sin necesidad de instalar JupyterLab de nuevo, solo activas el enviroment de colab_connect e inicias el servidor de Jupyter y lo pegas en Google Colab para conectarte.
+
+```bash
+# Activar el entorno
+micromamba activate colab_connect
+
+# Iniciar el servidor de Jupyter
+jupyter lab --no-browser --port=8888
+```
+
+El enviroment de docking_env trabajará ejecutando las ordenes mandadas desde el notebook de Google Colab al servidor de JupyterLab, no es necesario que te conectes a él desde la terminal, tan solo deja activo el entorno colab_connect y el servidor iniciado.
+
+Quizás lo más enrevesado al principio es organizar todas las rutas a las carpetas y archivos para realizar los trabajos en el propio notebook de GC, para algunas celdas se dan ejemplos de como debería ser la ruta donde esta cada archivo, por ejemplo en los "executable path", que tuve que poner debido a problemas de ejecución que me dieron, pero en otros no.
+
+Yo trabajaba con una carpeta en mi disco D: de mi ordenador, así que en mi caso los archivos estaban en una ruta parecida a esta para llegar al disco D: --> (/mnt/d/...) donde d/ representa el disco D, mnt es la manera de WSL para llegar al disco local.
+
+Si hay alguna duda, problema o error comentadlo.
+
 ## 💻 Rendimiento
 
 Las pruebas de rendimiento muestran una eficiencia notable:
 
-* **~1 hora por cada 1000 ligandos** (con 3 posibles conformaciones cada uno).
+* **~30' por cada 1000 ligandos**.
 
 * **Hardware de prueba**: Intel(R) Core(TM) i5-7400 CPU @ 3.00 GHz (4 núcleos / 4 hilos).
   
