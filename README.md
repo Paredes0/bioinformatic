@@ -114,7 +114,7 @@ jupyter lab --no-browser --NotebookApp.allow_origin='https://colab.research.goog
 
 El enviroment de docking_env trabajará ejecutando las ordenes mandadas desde el notebook de Google Colab al servidor de JupyterLab, no es necesario que te conectes a él desde la terminal, tan solo deja activo el entorno colab_connect y el servidor iniciado.
 
-### 📂 Organización de Archivos y Rutas
+### 6. Organización de Archivos y Rutas
 
 Quizás lo más enrevesado al principio es organizar todas las rutas a las carpetas y archivos para realizar los trabajos en el propio notebook de GC, para algunas celdas se dan ejemplos de como debería ser la ruta donde esta cada archivo, por ejemplo en los "executable path", que tuve que poner debido a problemas de ejecución que me dieron, pero en otros no.
 
