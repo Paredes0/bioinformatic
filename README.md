@@ -2,7 +2,7 @@
 
 Un flujo de trabajo completo para **Cribado Virtual Basado en Estructura (SBVS)** que combina la comodidad de Google Colab con la potencia de tu ordenador local (Si la tienes ;)).
 
-Este proyecto nace para solucionar, por un lado, los largos tiempos de cómputo, interrupciones y límites de las plataformas gratuitas en la nube y por otro, la incomodidad de uso . Usando una arquitectura híbrida, este pipeline permite ejecutar análisis de docking masivos de manera eficiente, robusta y reanudable.
+Este proyecto nace para solucionar, por un lado, los largos tiempos de cómputo, interrupciones y límites de las plataformas gratuitas en la nube y por otro, la incomodidad de uso. Usando una arquitectura híbrida, este pipeline permite ejecutar análisis de docking masivos de manera eficiente, robusta y reanudable.
 
 El código fue desarrollado mediante un enfoque de programación asistida por IA (*vibe coding*) con modelos de lenguaje avanzados, resultando en un notebook funcional y optimizado para la investigación.
 
@@ -10,9 +10,9 @@ El código fue desarrollado mediante un enfoque de programación asistida por IA
 
 Antes de explicar qué es exactamente y como funciona, he pensado en como contextualizar este proyecto, y creo que la mejor manera de hacerlo es explicar brevemente quien soy y por qué he creado esto.
 
-Soy un estudiante de biotecnología de último año, actualmente estoy cursando prácticas extracurriculares en un grupo dedicado a la bioinformática estructural y química computacional. En el transcurso de estas prácticas, me he encontrado con dificultades a la hora de utilizar herramientas online gratuitas de tipo SBVS, por ello, con ayuda de la inteligencia artificial Gemini y aplicando mis conocimientos básicos de programación, he creado este notebook en Google Colab.
+Soy un estudiante de biotecnología de último año, actualmente estoy cursando prácticas extracurriculares en un grupo dedicado a la bioinformática estructural y química computacional llamado BIO-HPC, de la universidad UCAM Murcia. En el transcurso de estas prácticas, me he encontrado con dificultades a la hora de utilizar herramientas online gratuitas de tipo SBVS, por ello, con ayuda de la inteligencia artificial (Gemini 2.5 pro) y aplicando mis conocimientos básicos de programación, he creado este notebook en Google Colab.
 
-El hecho de que este preparado para conectarse a tu ordenador personal es debido a la baja capacidad de cómputo que tiene la versión gratuita de Google Colab, al final de este README.md se indica que CPU he utilizado yo para estos cálculos, no es nada exagerado.
+El hecho de que este preparado para conectarse a tu ordenador personal es debido a la baja capacidad de cómputo que tiene la versión gratuita de Google Colab, al final de este README.md se indica que CPU he utilizado yo para estos cálculos.
 
 Espero que le sea útil a alguien como me lo ha sido a mí.
 
@@ -44,9 +44,14 @@ Es necesario tener un entorno Linux. Se recomienda usar el **Subsistema de Windo
 
 Instala **Micromamba** para una gestión de paquetes más rápida y eficiente. Es totalmente necesaria para crear los entornos y ejecutar los comandos de manera segura y eficiente.
 
+Una vez instalado WSL, configuramos y abrimos la terminal para realizar la instalación de los entornos necesarios para trabajar:
+
 ```bash
 # Ejemplo de instalación de Micromamba
-wget -qO- [https://micro.mamba.pm/api/micromamba/linux-64/latest](https://micro.mamba.pm/api/micromamba/linux-64/latest) | tar -xvj bin/micromamba
+"${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+
+# Actualizar micromamba a la ultima version
+micromamba self-update
 
 # Dar permisos de ejecución a Micromamba
 chmod +x bin/micromamba
@@ -64,7 +69,8 @@ micromamba create -n docking_env
 micromamba activate docking_env
 
 # Instalar paquetes desde el canal bioconda
-micromamba install -c bioconda vina smina meeko rdkit openbabel
+$ micromamba install -c conda-forge numpy swig boost-cpp libboost sphinx sphinx_rtd_theme tqdm rdkit meeko openbabel gemmi autogrid
+$ pip install vina
 ```
 
 ### 4. Vincular Colab con el Entorno Local
@@ -72,6 +78,12 @@ micromamba install -c bioconda vina smina meeko rdkit openbabel
 Para conectar la interfaz de Colab con la potencia de tu máquina, necesitas iniciar un servidor de Jupyter.
 
 ```bash
+# Crear el entorno
+micromamba create -n colab_connect
+
+# Activar el entorno
+micromamba activate colab_connect
+
 # Instalar JupyterLab en tu entorno
 micromamba install jupyterlab
 
@@ -80,6 +92,8 @@ jupyter lab --no-browser --port=8888
 ```
 
 Sigue las instrucciones de la terminal para obtener la URL con el token y conéctate desde Google Colab (`Conectar a un entorno de ejecución local`).
+
+(Simplemente copia y pega el link que aparece en la terminal que contenga "http://localhost:8888/lab?token..." en el espacio disponible para una URL en Google Colab dentro del menu (`Conectar a un entorno de ejecución local`))
 
 ## 💻 Rendimiento
 
