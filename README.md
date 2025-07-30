@@ -151,4 +151,65 @@ Distribuido bajo la Licencia MIT. Consulta el archivo `LICENSE` para más inform
 
 * **GitHub**: [Paredes0](https://github.com/Paredes0)
 
-* **LinkedIn**: [Tu Perfil](https://www.linkedin.com/in/tu-usuario/)
+* **LinkedIn**: [Tu Perfil](www.linkedin.com/in/noé-paredes-alfonso-395328267)
+
+
+
+## Agradecimientos, Licencias y Responsabilidades
+
+Este proyecto es una canalización computacional que integra múltiples herramientas de software de código abierto y científico. Su funcionamiento depende por completo del trabajo excepcional de los desarrolladores y las comunidades que mantienen estos paquetes. A continuación, se detallan las dependencias clave, sus licencias y la forma correcta de citar su trabajo.
+
+### Herramientas Científicas Principales
+
+Este flujo de trabajo utiliza los siguientes programas para la preparación de estructuras, el docking molecular y el cribado virtual. Se recomienda encarecidamente citar las publicaciones originales si utilizas los resultados de este pipeline en tu investigación.
+
+* **Smina**
+    * **Función:** Utilizado para el cribado virtual de alto rendimiento y el re-docking de refinamiento.
+    * **Licencia:** [Apache License 2.0](https://github.com/smina/smina/blob/master/LICENSE)
+    * **Cita Académica:** Koes, D. R., Baumgartner, M. P., & Camacho, C. J. (2013). Lessons learned in empirical scoring with smina from the CSAR 2011 benchmarking exercise. *Journal of chemical information and modeling*, 53(8), 1893-1904.
+
+* **AutoDock Vina**
+    * **Función:** Utilizado para el docking de una sola molécula.
+    * **Licencia:** [Apache License 2.0](http://vina.scripps.edu/license.html)
+    * **Cita Académica:** Trott, O., & Olson, A. J. (2010). AutoDock Vina: improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading. *Journal of computational chemistry*, 31(2), 455-461.
+
+* **Meeko**
+    * **Función:** Preparación de las moléculas del receptor y los ligandos para convertirlos al formato PDBQT.
+    * **Licencia:** [GNU General Public License v3.0](https://github.com/forlilab/Meeko/blob/master/LICENSE)
+    * **Cita Académica:** Se recomienda citar el repositorio directamente o consultar las publicaciones del [Forli Lab](http://forlilab.org/publications.html) que describan su uso.
+
+* **RDKit: Open-Source Cheminformatics**
+    * **Función:** Utilizado para el manejo de estructuras moleculares (lectura de archivos SDF) y como dependencia fundamental de Meeko.
+    * **Licencia:** [BSD 3-Clause License](https://github.com/rdkit/rdkit/blob/master/license.txt)
+    * **Cita Académica:** Para citar RDKit, por favor consulte las instrucciones en su [página web oficial](https://www.rdkit.org/docs/About.html#citing-rdkit).
+
+* **Open Babel**
+    * **Función:** Utilizado para la conversión de formatos, específicamente para generar SMILES a partir de los resultados en PDBQT.
+    * **Licencia:** [GNU General Public License v2.0](http://openbabel.org/wiki/License)
+    * **Cita Académica:** O'Boyle, N. M., et al. (2011). Open Babel: An open chemical toolbox. *Journal of Cheminformatics*, 3(1), 33.
+
+### Entorno y Librerías de Soporte
+
+La ejecución y el análisis de datos son posibles gracias a las siguientes herramientas:
+
+* **Mamba / Micromamba**
+    * **Función:** Gestión de paquetes y entornos, permitiendo la instalación robusta de las complejas dependencias científicas.
+    * **Licencia:** [BSD 3-Clause License](https://github.com/mamba-org/mamba/blob/main/LICENSE)
+
+* **Pandas**
+    * **Función:** Utilizado para la manipulación, análisis y exportación de los datos de resultados.
+    * **Licencia:** [BSD 3-Clause License](https://github.com/pandas-dev/pandas/blob/main/LICENSE)
+
+* **NumPy**
+    * **Función:** Dependencia fundamental de Pandas para el cálculo numérico.
+    * **Licencia:** [BSD 3-Clause License](https://github.com/numpy/numpy/blob/main/LICENSE.txt)
+
+* **Tqdm**
+    * **Función:** Proporciona barras de progreso para monitorizar los procesos largos.
+    * **Licencia:** [MIT License](https://github.com/tqdm/tqdm/blob/master/LICENCE)
+
+### Descargo de Responsabilidad (Disclaimer)
+
+Este software se proporciona "TAL CUAL", sin garantía de ningún tipo, expresa o implícita. Los resultados generados por este pipeline (como las afinidades de unión) son predicciones teóricas y requieren una validación experimental para ser confirmados.
+
+El autor de este repositorio no se hace responsable de ninguna reclamación, daño u otra responsabilidad derivada del uso o la interpretación de este software o sus resultados. El usuario asume toda la responsabilidad de verificar que el uso de cada una de las herramientas de software subyacentes cumple con sus respectivas licencias.
