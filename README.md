@@ -170,18 +170,16 @@ Este flujo de trabajo utiliza los siguientes programas para la preparación de e
 
 * **AutoDock Vina**
     * **Función:** Utilizado para el docking de una sola molécula.
-    * **Licencia:** [Apache License 2.0](http://vina.scripps.edu/license.html)
+    * **Licencia:** [Apache License 2.0]((https://github.com/ccsb-scripps/AutoDock-Vina?tab=Apache-2.0-1-ov-file#))
     * **Cita Académica:** Trott, O., & Olson, A. J. (2010). AutoDock Vina: improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading. *Journal of computational chemistry*, 31(2), 455-461.
 
 * **Meeko**
     * **Función:** Preparación de las moléculas del receptor y los ligandos para convertirlos al formato PDBQT.
     * **Licencia:** [GNU General Public License v3.0](https://github.com/forlilab/Meeko/blob/master/LICENSE)
-    * **Cita Académica:** Se recomienda citar el repositorio directamente o consultar las publicaciones del [Forli Lab](http://forlilab.org/publications.html) que describan su uso.
 
 * **RDKit: Open-Source Cheminformatics**
     * **Función:** Utilizado para el manejo de estructuras moleculares (lectura de archivos SDF) y como dependencia fundamental de Meeko.
     * **Licencia:** [BSD 3-Clause License](https://github.com/rdkit/rdkit/blob/master/license.txt)
-    * **Cita Académica:** Para citar RDKit, por favor consulte las instrucciones en su [página web oficial](https://www.rdkit.org/docs/About.html#citing-rdkit).
 
 * **Open Babel**
     * **Función:** Utilizado para la conversión de formatos, específicamente para generar SMILES a partir de los resultados en PDBQT.
