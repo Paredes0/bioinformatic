@@ -100,6 +100,8 @@ Sigue las instrucciones de la terminal para obtener la URL con el token y conéc
 
 ### 5. Uso Habitual
 
+Lo primero que debes hacer antes de nada, es descargar el archivo .ipynb y subirlo a Google Colab mediante --> "Archivo -> Subir cuaderno" y seleccionar el archivo.
+
 Una vez tienes los dos enviroment instalados (docking_env y colab_connect) con todos los paquetes instalados, tan solo tendrás que realizar el paso anterior sin necesidad de instalar JupyterLab de nuevo, solo activas el enviroment de colab_connect e inicias el servidor de Jupyter y lo pegas en Google Colab para conectarte.
 
 ```bash
