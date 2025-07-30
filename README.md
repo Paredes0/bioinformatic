@@ -96,7 +96,7 @@ jupyter lab --no-browser --NotebookApp.allow_origin='https://colab.research.goog
 
 Sigue las instrucciones de la terminal para obtener la URL con el token y conéctate desde Google Colab (`Conectar a un entorno de ejecución local`).
 
-(Simplemente copia y pega el link que aparece en la terminal que contenga "http://localhost:8888/lab?token..." en el espacio disponible para una URL en Google Colab dentro del menu (`Conectar a un entorno de ejecución local`))
+(Simplemente copia y pega el link que aparece en la terminal que contenga "http://localhost:8888/lab?token..." en el espacio disponible para una URL en Google Colab dentro del menu (`Conectar a un entorno de ejecución local`)
 
 ### 5. Uso Habitual
 
