@@ -69,8 +69,8 @@ micromamba create -n docking_env
 micromamba activate docking_env
 
 # Instalar paquetes desde el canal conda-forge y pip
-$ micromamba install -c conda-forge numpy swig boost-cpp libboost tqdm rdkit meeko openbabel
-$ pip install vina
+micromamba install -c conda-forge numpy swig boost-cpp libboost tqdm rdkit meeko openbabel
+pip install vina
 ```
 
 ### 4. Vincular Colab con el Entorno Local
@@ -87,11 +87,11 @@ micromamba create -n colab_connect
 # Activar el entorno
 micromamba activate colab_connect
 
-# Instalar JupyterLab en tu entorno
-micromamba install jupyterlab
+# Instalar JupyterLab en tu entorno y htop para controlar los procesos
+micromamba install jupyterlab htop
 
 # Iniciar el servidor de Jupyter
-jupyter lab --no-browser --port=8888
+jupyter lab --no-browser --NotebookApp.allow_origin='https://colab.research.google.com' --port=8888
 ```
 
 Sigue las instrucciones de la terminal para obtener la URL con el token y conéctate desde Google Colab (`Conectar a un entorno de ejecución local`).
@@ -108,17 +108,79 @@ Una vez tienes los dos enviroment instalados (docking_env y colab_connect) con t
 # Activar el entorno
 micromamba activate colab_connect
 
-# Iniciar el servidor de Jupyter
-jupyter lab --no-browser --port=8888
+# Iniciar el servidor de Jupyter de forma segura
+jupyter lab --no-browser --NotebookApp.allow_origin='https://colab.research.google.com' --port=8888
 ```
 
 El enviroment de docking_env trabajará ejecutando las ordenes mandadas desde el notebook de Google Colab al servidor de JupyterLab, no es necesario que te conectes a él desde la terminal, tan solo deja activo el entorno colab_connect y el servidor iniciado.
 
+### 📂 Organización de Archivos y Rutas
+
 Quizás lo más enrevesado al principio es organizar todas las rutas a las carpetas y archivos para realizar los trabajos en el propio notebook de GC, para algunas celdas se dan ejemplos de como debería ser la ruta donde esta cada archivo, por ejemplo en los "executable path", que tuve que poner debido a problemas de ejecución que me dieron, pero en otros no.
 
-Yo trabajaba con una carpeta en mi disco D: de mi ordenador, así que en mi caso los archivos estaban en una ruta parecida a esta para llegar al disco D: --> (/mnt/d/...) donde d/ representa el disco D, mnt es la manera de WSL para llegar al disco local.
+Para que el notebook funcione correctamente, es crucial entender cómo WSL accede a tus archivos de Windows. La ruta a tu disco `C:` será `/mnt/c/` y a tu disco `D:` será `/mnt/d/`.
 
-Si hay alguna duda, problema o error comentadlo.
+Se recomienda crear una carpeta principal para el proyecto. Por ejemplo, en tu disco `D:`:
+
+D:/Bioinformatica/Mi_Proyecto_SBVS/
+  - data/
+      - receptor.pdb
+      - ligandos.sdf
+  - results/
+      - docking_results.csv
+      - best_ligands/
+    
+Cuando el notebook te pida una ruta, deberás usar el formato de WSL. Por ejemplo, la ruta a `receptor.pdb` sería:
+`/mnt/d/Bioinformatica/Mi_Proyecto_SBVS/data/receptor.pdb`
+
+## 🚀 Flujo de Trabajo en el Notebook
+
+Una vez que has conectado tu entorno local, el proceso dentro del notebook de Google Colab es el siguiente:
+
+1.  **Celda 1: Configuración de Rutas**: Lo primero es editar las variables que contienen las rutas a tus archivos (receptor, ligandos, ejecutables y carpetas de resultados). Asegúrate de usar el formato de rutas de WSL (`/mnt/c/...`).
+2.  **Celda 2: Preparación de Moléculas**: Ejecuta esta celda para convertir tu receptor y tus ligandos al formato `PDBQT`.
+3.  **Celda 3: Docking de Prueba**: Realiza un docking con un solo ligando para asegurar que la caja de unión (`bounding box`) y la configuración son correctas.
+4.  **Celda 4: Cribado Virtual Masivo (SBVS)**: Esta celda iniciará el cálculo pesado en tu ordenador local. Recuerda que este proceso puede tardar horas dependiendo de la cantidad de ligandos y parámetros usados (exhaustividad y conformaciones).
+5.  **Celda 5: Análisis y Refinamiento**: Una vez finalizado el cribado, esta sección te permite analizar los resultados, seleccionar los mejores candidatos y realizar un docking de mayor precisión con AutoDock Vina.
+
+## ⚠️ ADVERTENCIA: Cómo Detener una Ejecución Local
+
+Cuando inicias un script desde Google Colab, este se ejecuta en tu PC de forma independiente. **Detener la celda en Colab NO detendrá el proceso en tu ordenador.** Para parar una ejecución larga (como un cribado virtual), debes hacerlo manualmente en tu terminal WSL.
+
+Tienes dos maneras principales:
+
+### Opción 1: La Opción Drástica (Cerrar el Servidor Jupyter) 🚨
+
+Esta es la forma más rápida de parar todo de golpe.
+
+1.  Ve a la terminal donde tienes el servidor de `jupyter lab` corriendo.
+2.  Presiona `Ctrl + C`.
+3.  Te preguntará si quieres detener el servidor. Escribe `y` y presiona `Enter`.
+
+* **Consecuencia:** Esto matará el servidor Jupyter y, por lo general, todos los procesos que inició. Perderás la conexión con Colab y tendrás que reiniciar el servidor para volver a ejecutar cualquier cosa.
+
+### Opción 2: La Opción Precisa y Recomendada (Usar `htop`) ✅
+
+Este método te permite detener un script específico sin tumbar el servidor Jupyter, dándote más control.
+
+1.  **Abre una NUEVA terminal de WSL.** (Deja la terminal de Jupyter corriendo sin tocarla).
+
+2.  **Inicia el monitor de procesos instalado anteriormente junto con JupyterLab:**
+    ```bash
+    htop
+    ```
+
+3.  **Encuentra tu script:** Dentro de `htop`, tienes dos formas de encontrar el proceso:
+    * **Filtrar (F4):** Presiona la tecla `F4` y escribe el nombre de tu script, por ejemplo: `run_sbvs.py`.
+    * **Ordenar (F6):** Presiona `F6` y selecciona `PERCENT_CPU` para ordenar por uso de CPU. Tu script debería aparecer de los primeros.
+
+4.  **Detén el proceso:**
+    * Usa las flechas para seleccionar el proceso principal (ej. `python run_sbvs.py`).
+    * Presiona `F9` (Kill).
+    * Asegúrate de que esté seleccionada la señal `15 SIGTERM` (terminación ordenada) y presiona `Enter`.
+
+Con este método, solo detienes el cálculo que te interesa y mantienes el servidor Jupyter listo para recibir nuevas órdenes.
+
 
 ## 💻 Rendimiento
 
