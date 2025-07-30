@@ -69,7 +69,7 @@ micromamba create -n docking_env
 micromamba activate docking_env
 
 # Instalar paquetes desde el canal conda-forge y pip
-$ micromamba install -c conda-forge numpy swig boost-cpp libboost sphinx sphinx_rtd_theme tqdm rdkit meeko openbabel gemmi autogrid
+$ micromamba install -c conda-forge numpy swig boost-cpp libboost tqdm rdkit meeko openbabel
 $ pip install vina
 ```
 
@@ -170,7 +170,7 @@ Este flujo de trabajo utiliza los siguientes programas para la preparación de e
 
 * **AutoDock Vina**
     * **Función:** Utilizado para el docking de una sola molécula.
-    * **Licencia:** [Apache License 2.0]((https://github.com/ccsb-scripps/AutoDock-Vina?tab=Apache-2.0-1-ov-file#))
+    * **Licencia:** [Apache License 2.0](https://github.com/ccsb-scripps/AutoDock-Vina?tab=Apache-2.0-1-ov-file#)
     * **Cita Académica:** Trott, O., & Olson, A. J. (2010). AutoDock Vina: improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading. *Journal of computational chemistry*, 31(2), 455-461.
 
 * **Meeko**
